@@ -10,13 +10,6 @@
   <link rel="stylesheet" type="text/css" href="{{ pathto('_static/css/bootstrap.min.css', 1) }}" />
   <link rel="stylesheet" type="text/css" href="{{ pathto('_static/css/bootstrap-theme.min.css', 1) }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    pre {
-      text-align: justify;
-      white-space: normal;
-      word-break: break-word;
-    }
-  </style>
   {{ super() }}
 {%- endblock %}
 
@@ -158,8 +151,20 @@
   });
 </script>
 <script type="text/javascript" src="{{ pathto('_static/js/bootstrap.js', 1)}}"></script>
+<script>
+  jQuery(function($) {
+    $('pre').each(function(i, e) {
+      var text = $(e).text().replace(/\n\s/g, '\n<br><br> ');
+      $(e).html(text);})
+  });
+</script>
 {%- block footer_wrapper %}
 <style>
+  pre {
+    text-align: justify;
+    white-space: normal;
+    word-break: break-word;
+  }
   @media screen and (min-width: 769px) {
     div.footer {
       max-width: 900px;
